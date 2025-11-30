@@ -12,8 +12,8 @@ export const Button: React.FC<ButtonProps> = ({
   isLoading,
   ...props
 }) => {
-  // Increased text size to text-base (16px) and py-4 for better touch targets
-  const baseStyles = "w-full py-4 px-6 rounded-xl font-bold tracking-tight transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-base";
+  // iOS Standard: Min 44px height, text-base/text-lg
+  const baseStyles = "w-full py-5 px-6 rounded-2xl font-bold tracking-tight transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-lg";
 
   const variants = {
     primary: "bg-blood-700 text-white shadow-lg shadow-blood-900/20 hover:bg-blood-600 border border-blood-600",

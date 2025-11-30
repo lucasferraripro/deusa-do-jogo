@@ -8,6 +8,7 @@ import { BehaviorAdviceResult } from '../types';
 type Category = 'conquista' | 'conversa' | 'relacionamento' | 'interpretar';
 
 export const SmartBehaviors: React.FC = () => {
+  const activeIconClass = "w-6 h-6";
   const [activeTab, setActiveTab] = useState<Category>('conquista');
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [result, setResult] = useState<BehaviorAdviceResult | null>(null);
@@ -76,9 +77,9 @@ export const SmartBehaviors: React.FC = () => {
     <Layout title="Modo Deusa">
       <div className="pb-24">
         
-        {/* Tabs */}
+        {/* Tabs - Scrollable with larger targets */}
         {!selectedTopic && (
-          <div className="sticky top-0 bg-black/95 backdrop-blur z-30 px-2 py-2 border-b border-neutral-900 flex overflow-x-auto gap-2 no-scrollbar">
+          <div className="sticky top-0 bg-black/95 backdrop-blur z-30 px-4 py-4 border-b border-neutral-900 flex overflow-x-auto gap-3 no-scrollbar">
             <TabButton active={activeTab === 'conquista'} onClick={() => setActiveTab('conquista')} icon={<DiamondIcon />} label="Conquista" />
             <TabButton active={activeTab === 'conversa'} onClick={() => setActiveTab('conversa')} icon={<MessageIcon />} label="Conversa" />
             <TabButton active={activeTab === 'relacionamento'} onClick={() => setActiveTab('relacionamento')} icon={<UsersIcon />} label="Relação" />
@@ -86,12 +87,12 @@ export const SmartBehaviors: React.FC = () => {
           </div>
         )}
 
-        <div className="px-5 py-6">
+        <div className="px-6 py-6">
           
           {/* LISTA DE TÓPICOS */}
           {!selectedTopic && activeTab !== 'interpretar' && (
-            <div className="space-y-3 animate-fade-in">
-              <h2 className="text-lg font-serif font-bold text-neutral-300 mb-4 px-1">
+            <div className="space-y-4 animate-fade-in">
+              <h2 className="text-xl font-bold text-white mb-6 px-1">
                 {activeTab === 'conquista' && 'A Arte da Conquista'}
                 {activeTab === 'conversa' && 'Domínio da Comunicação'}
                 {activeTab === 'relacionamento' && 'Sabedoria da União'}
@@ -100,10 +101,10 @@ export const SmartBehaviors: React.FC = () => {
                 <button
                   key={idx}
                   onClick={() => handleTopicClick(topic)}
-                  className="w-full text-left p-4 bg-neutral-900 rounded-xl border border-neutral-800 hover:border-blood-900 hover:bg-neutral-800 transition-all flex items-center justify-between group active:scale-[0.98]"
+                  className="w-full text-left p-5 bg-[#1c1c1e] rounded-2xl border border-neutral-800 hover:border-blood-900 transition-all flex items-center justify-between group active:scale-[0.98]"
                 >
-                  <span className="font-medium text-neutral-200 text-sm">{topic}</span>
-                  <span className="text-neutral-600 group-hover:text-blood-500">→</span>
+                  <span className="font-semibold text-neutral-200 text-base">{topic}</span>
+                  <span className="text-neutral-500 group-hover:text-blood-500 text-xl">→</span>
                 </button>
               ))}
             </div>
@@ -111,13 +112,13 @@ export const SmartBehaviors: React.FC = () => {
 
           {/* INTERPRETAÇÃO CUSTOMIZADA */}
           {!selectedTopic && activeTab === 'interpretar' && (
-            <div className="space-y-4 animate-fade-in">
-              <div className="bg-neutral-900 p-5 rounded-2xl border border-neutral-800 mb-4">
-                 <h3 className="font-serif font-bold text-white text-base mb-2">Decifrador de Comportamento</h3>
-                 <p className="text-xs text-neutral-400">Descreva o que ele fez ou disse. A Deusa explicará a psicologia por trás.</p>
+            <div className="space-y-6 animate-fade-in">
+              <div className="bg-[#1c1c1e] p-6 rounded-2xl border border-neutral-800 mb-2">
+                 <h3 className="font-bold text-white text-lg mb-2">Decifrador de Comportamento</h3>
+                 <p className="text-sm text-neutral-400 leading-relaxed">Descreva o que ele fez ou disse. A Deusa explicará a psicologia por trás.</p>
               </div>
               <textarea 
-                className="w-full input-dark rounded-xl p-4 text-base min-h-[140px]"
+                className="w-full input-dark rounded-2xl p-5 text-lg min-h-[160px]"
                 placeholder="Ex: Ele disse que não quer namorar agora mas continua me procurando..."
                 value={customInput}
                 onChange={(e) => setCustomInput(e.target.value)}
@@ -130,40 +131,40 @@ export const SmartBehaviors: React.FC = () => {
 
           {/* RESULTADO (LOADING) */}
           {loading && selectedTopic && !result && (
-             <div className="flex flex-col items-center justify-center py-20 space-y-4">
-                <div className="w-10 h-10 border-4 border-blood-900 border-t-blood-500 rounded-full animate-spin"></div>
-                <p className="text-neutral-500 text-sm animate-pulse">Consultando a sabedoria ancestral...</p>
+             <div className="flex flex-col items-center justify-center py-20 space-y-6">
+                <div className="w-12 h-12 border-4 border-blood-900 border-t-blood-500 rounded-full animate-spin"></div>
+                <p className="text-neutral-400 text-base font-medium animate-pulse">Consultando a sabedoria ancestral...</p>
              </div>
           )}
 
           {/* RESULTADO (CONTEÚDO) */}
           {result && (
-            <div className="space-y-6 animate-fade-in">
-              <button onClick={resetSelection} className="flex items-center text-neutral-400 hover:text-white mb-2 text-sm">
-                <ChevronLeftIcon className="w-5 h-5 mr-1" /> Voltar
+            <div className="space-y-8 animate-fade-in">
+              <button onClick={resetSelection} className="flex items-center text-neutral-400 hover:text-white mb-2 text-base font-medium">
+                <ChevronLeftIcon className="w-6 h-6 mr-1" /> Voltar
               </button>
 
-              <div className="bg-neutral-900 rounded-2xl border border-neutral-800 overflow-hidden">
-                <div className="bg-black p-5 border-b border-neutral-800">
-                  <h3 className="font-serif font-bold text-xl text-white leading-tight">{result.topic}</h3>
-                  <div className="mt-3 flex items-start gap-2">
-                    <span className="text-lg">🧠</span>
+              <div className="bg-[#1c1c1e] rounded-3xl border border-neutral-800 overflow-hidden shadow-2xl">
+                <div className="bg-black p-6 border-b border-neutral-800">
+                  <h3 className="font-bold text-2xl text-white leading-tight mb-2">{result.topic}</h3>
+                  <div className="mt-4 flex items-start gap-3">
+                    <span className="text-2xl">🧠</span>
                     <div>
-                      <span className="text-[10px] uppercase font-bold text-neutral-500 tracking-wider">Mindset</span>
-                      <p className="text-sm text-neutral-300 italic">{result.mindset}</p>
+                      <span className="text-xs uppercase font-bold text-neutral-500 tracking-wider">Mindset</span>
+                      <p className="text-base text-neutral-300 italic leading-relaxed mt-1">{result.mindset}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-5 space-y-6">
+                <div className="p-6 space-y-8">
                   <div>
-                    <h4 className="flex items-center gap-2 font-bold text-green-500 text-sm uppercase tracking-wide mb-3">
-                      <span className="text-lg">✅</span> O que fazer
+                    <h4 className="flex items-center gap-2 font-bold text-green-500 text-sm uppercase tracking-wide mb-4">
+                      <span className="text-xl">✅</span> O que fazer
                     </h4>
-                    <ul className="space-y-2">
+                    <ul className="space-y-4">
                       {result.do.map((item, i) => (
-                        <li key={i} className="text-sm text-neutral-300 flex items-start">
-                          <span className="w-1.5 h-1.5 bg-green-900 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+                        <li key={i} className="text-base text-neutral-200 flex items-start leading-relaxed">
+                          <span className="w-2 h-2 bg-green-900 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                           {item}
                         </li>
                       ))}
@@ -171,13 +172,13 @@ export const SmartBehaviors: React.FC = () => {
                   </div>
 
                   <div>
-                    <h4 className="flex items-center gap-2 font-bold text-red-500 text-sm uppercase tracking-wide mb-3">
-                      <span className="text-lg">❌</span> O que evitar
+                    <h4 className="flex items-center gap-2 font-bold text-red-500 text-sm uppercase tracking-wide mb-4">
+                      <span className="text-xl">❌</span> O que evitar
                     </h4>
-                    <ul className="space-y-2">
+                    <ul className="space-y-4">
                       {result.dont.map((item, i) => (
-                        <li key={i} className="text-sm text-neutral-300 flex items-start">
-                          <span className="w-1.5 h-1.5 bg-red-900 rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
+                        <li key={i} className="text-base text-neutral-200 flex items-start leading-relaxed">
+                          <span className="w-2 h-2 bg-red-900 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                           {item}
                         </li>
                       ))}
@@ -185,9 +186,9 @@ export const SmartBehaviors: React.FC = () => {
                   </div>
 
                   {result.examplePhrase && (
-                    <div className="bg-neutral-950 p-4 rounded-xl border border-neutral-800 mt-4">
-                      <span className="text-[10px] uppercase font-bold text-blood-500 tracking-wider block mb-1">Mantra / Frase</span>
-                      <p className="text-base font-medium text-white">"{result.examplePhrase}"</p>
+                    <div className="bg-neutral-950 p-6 rounded-2xl border border-neutral-800 mt-6">
+                      <span className="text-xs uppercase font-bold text-blood-500 tracking-wider block mb-2">Mantra / Frase</span>
+                      <p className="text-lg font-semibold text-white leading-relaxed">"{result.examplePhrase}"</p>
                     </div>
                   )}
                 </div>
@@ -203,13 +204,13 @@ export const SmartBehaviors: React.FC = () => {
 const TabButton = ({ active, onClick, icon, label }: { active: boolean, onClick: () => void, icon: React.ReactNode, label: string }) => (
   <button
     onClick={onClick}
-    className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all whitespace-nowrap ${
+    className={`flex items-center gap-2 px-5 py-3 rounded-full border transition-all whitespace-nowrap ${
       active 
-        ? 'bg-neutral-100 text-black border-white font-bold' 
-        : 'bg-neutral-900 text-neutral-400 border-neutral-800 hover:bg-neutral-800'
+        ? 'bg-white text-black border-white font-bold shadow-lg' 
+        : 'bg-[#1c1c1e] text-neutral-400 border-neutral-800 hover:bg-neutral-800'
     }`}
   >
-    {React.cloneElement(icon as React.ReactElement<{ className?: string }>, { className: 'w-4 h-4' })}
-    <span className="text-xs">{label}</span>
+    {React.cloneElement(icon as React.ReactElement<{ className?: string }>, { className: 'w-5 h-5' })}
+    <span className="text-sm">{label}</span>
   </button>
 );

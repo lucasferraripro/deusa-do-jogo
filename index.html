@@ -11,7 +11,7 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+              sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
               serif: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Georgia', 'serif'],
             },
             colors: {
@@ -49,34 +49,40 @@
         color: #f5f5f5;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        font-feature-settings: "cv11", "ss01";
+        /* iOS Base Font Size */
+        font-size: 17px; 
+        line-height: 1.5;
       }
       
+      h1, h2, h3, h4, h5, h6 {
+        letter-spacing: -0.02em; /* Tight tracking like iOS titles */
+      }
+
       .input-dark {
-        background-color: #121212; 
+        background-color: #1c1c1e; /* Apple System Gray 6 Dark */
         color: #ffffff;
         border: 1px solid #333333;
-        font-size: 16px; 
+        font-size: 17px; /* Prevent zoom on iOS */
+        line-height: 1.4;
       }
       .input-dark:focus {
         border-color: #ef4444;
         outline: none;
-        background-color: #1a1a1a;
+        background-color: #2c2c2e;
       }
       .input-dark::placeholder {
-        color: #666666;
+        color: #8e8e93;
       }
 
       /* Matte Gem Style (Clean 3D) */
       .gem-matte {
-        background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
-        box-shadow: 
-          5px 5px 10px #050505, 
-          -5px -5px 10px #262626;
-        border: 1px solid #262626;
+        background: linear-gradient(145deg, #2c2c2e, #1c1c1e);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        border: 1px solid #3a3a3c;
       }
       .gem-matte:active {
-        box-shadow: inset 5px 5px 10px #050505, inset -5px -5px 10px #262626;
+        transform: scale(0.98);
+        opacity: 0.9;
       }
 
       .fade-in {
@@ -86,8 +92,22 @@
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
       }
+
+      /* Hide Scrollbar but allow scroll */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      /* Safe Area for iPhone X+ */
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",

@@ -8,20 +8,21 @@ export const Home: React.FC = () => {
 
   return (
     <Layout>
-      <div className="px-4 py-4 space-y-4">
+      <div className="px-6 py-8 space-y-8">
         
-        {/* Hero Section */}
-        <div className="text-center pt-2 pb-2">
-          <h2 className="text-2xl font-bold text-white leading-tight tracking-tight mb-1">
-            Ative Sua <span className="text-blood-600">Deusa Interior.</span>
+        {/* Hero Section - iOS Large Title Style */}
+        <div className="text-left pt-4">
+          <h2 className="text-4xl font-extrabold text-white leading-tight tracking-tight mb-3">
+            Ative Sua <br />
+            <span className="text-blood-600">Deusa Interior.</span>
           </h2>
-          <p className="text-neutral-500 text-sm max-w-[260px] mx-auto leading-tight">
-            Assuma o controle. Manipule o desejo.
+          <p className="text-neutral-400 text-lg font-medium leading-relaxed max-w-[90%]">
+            Assuma o controle. Manipule o desejo. Vença o jogo.
           </p>
         </div>
 
-        {/* Action Grid - Compact 2x2 */}
-        <div className="grid grid-cols-2 gap-3 max-w-[360px] mx-auto">
+        {/* Action Grid - Compact 2x2 with larger text */}
+        <div className="grid grid-cols-2 gap-4">
           <ActionCard 
             title="Desvendar" 
             desc="A verdade oculta."
@@ -52,13 +53,13 @@ export const Home: React.FC = () => {
           />
         </div>
 
-        {/* Daily Tip - Minimal */}
-        <div className="bg-neutral-900/40 p-4 rounded-xl border border-neutral-800/50 mt-2 max-w-[360px] mx-auto">
-           <div className="flex items-center gap-2 mb-1">
-             <span className="text-blood-500 text-sm">🔥</span>
-             <h3 className="font-bold text-xs text-neutral-400 uppercase tracking-wide">Regra do Dia</h3>
+        {/* Daily Tip - Minimal but Readable */}
+        <div className="bg-[#1c1c1e] p-6 rounded-2xl border border-neutral-800 mt-6">
+           <div className="flex items-center gap-2 mb-3">
+             <span className="text-blood-500 text-lg">🔥</span>
+             <h3 className="font-bold text-sm text-neutral-400 uppercase tracking-widest">Regra do Dia</h3>
            </div>
-           <p className="text-neutral-300 text-sm leading-snug italic border-l-2 border-blood-800 pl-3">
+           <p className="text-white text-lg font-medium leading-relaxed italic border-l-4 border-blood-700 pl-4">
              "O silêncio é a resposta mais barulhenta que você pode dar."
            </p>
         </div>
@@ -70,12 +71,12 @@ export const Home: React.FC = () => {
 
 const ActionCard = ({ title, desc, icon, onClick, color }: { title: string, desc: string, icon: React.ReactNode, onClick: () => void, color: string }) => {
   return (
-    <button onClick={onClick} className="gem-matte aspect-[1/0.85] rounded-xl flex flex-col items-center justify-center p-3 transition-transform active:scale-95 group w-full">
-      <div className={`w-10 h-10 flex items-center justify-center mb-2 rounded-full bg-black/40 ${color}`}>
-        {React.cloneElement(icon as React.ReactElement<{ className?: string }>, { className: 'w-5 h-5' })}
+    <button onClick={onClick} className="gem-matte aspect-square rounded-2xl flex flex-col items-center justify-center p-4 transition-transform active:scale-95 group w-full">
+      <div className={`w-14 h-14 flex items-center justify-center mb-4 rounded-full bg-black/40 ${color}`}>
+        {React.cloneElement(icon as React.ReactElement<{ className?: string }>, { className: 'w-7 h-7' })}
       </div>
-      <h3 className="font-bold text-neutral-200 text-sm mb-0.5 tracking-tight">{title}</h3>
-      <p className="text-[11px] text-neutral-500 text-center leading-none">{desc}</p>
+      <h3 className="font-bold text-white text-lg mb-1 tracking-tight">{title}</h3>
+      <p className="text-sm text-neutral-400 text-center font-medium">{desc}</p>
     </button>
   );
 }
