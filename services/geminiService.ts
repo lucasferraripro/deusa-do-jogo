@@ -2,7 +2,14 @@ import { GoogleGenAI } from "@google/genai";
 import { SYSTEM_INSTRUCTION } from "../constants";
 import { GeneratorResult, DecoderResult, TurnTablesResult, BehaviorAdviceResult } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const apiKey = process.env.API_KEY;
+
+if (!apiKey) {
+  console.warn("⚠️ AVISO CRÍTICO: API_KEY não foi encontrada. A IA não funcionará. Verifique as Variáveis de Ambiente no Vercel/Netlify.");
+}
+
+// Inicializa com a chave ou uma string vazia para evitar crash imediato da aplicação no load
+const ai = new GoogleGenAI({ apiKey: apiKey || "chave_ausente" });
 
 const MODEL_NAME = 'gemini-2.5-flash';
 
@@ -11,6 +18,8 @@ const cleanJson = (text: string) => {
 };
 
 export const generateMessages = async (situationLabel: string, toneLabel: string, extraContext: string = ''): Promise<GeneratorResult> => {
+  if (!apiKey) throw new Error("Chave de API não configurada no servidor.");
+
   const prompt = `
   CONTEXTO: A usuária está na seguinte situação: "${situationLabel}".
   ${extraContext ? `DETALHES EXTRAS: ${extraContext}` : ''}
@@ -42,11 +51,13 @@ export const generateMessages = async (situationLabel: string, toneLabel: string
     return JSON.parse(cleanJson(text)) as GeneratorResult;
   } catch (error) {
     console.error("Gemini Error:", error);
-    throw new Error("Não foi possível gerar as mensagens. Tente novamente.");
+    throw new Error("Não foi possível gerar as mensagens. Verifique a conexão ou a Chave de API.");
   }
 };
 
 export const decodeMessage = async (message: string): Promise<DecoderResult> => {
+  if (!apiKey) throw new Error("Chave de API não configurada no servidor.");
+
   const prompt = `
   MENSAGEM RECEBIDA DO HOMEM: "${message}"
 
@@ -75,11 +86,13 @@ export const decodeMessage = async (message: string): Promise<DecoderResult> => 
     return JSON.parse(cleanJson(text)) as DecoderResult;
   } catch (error) {
     console.error("Gemini Error:", error);
-    throw new Error("Erro ao decodificar mensagem.");
+    throw new Error("Erro ao decodificar mensagem. Verifique a Chave de API.");
   }
 };
 
 export const analyzeThermometer = async (behaviorDescription: string): Promise<DecoderResult> => {
+  if (!apiKey) throw new Error("Chave de API não configurada no servidor.");
+
   const prompt = `
   COMPORTAMENTO DO HOMEM: "${behaviorDescription}"
 
@@ -110,6 +123,8 @@ export const analyzeThermometer = async (behaviorDescription: string): Promise<D
 };
 
 export const turnTheTables = async (story: string): Promise<TurnTablesResult> => {
+  if (!apiKey) throw new Error("Chave de API não configurada no servidor.");
+
   const prompt = `
   HISTÓRIA DA USUÁRIA: "${story}"
 
@@ -140,6 +155,8 @@ export const turnTheTables = async (story: string): Promise<TurnTablesResult> =>
 };
 
 export const getSmartBehaviorAdvice = async (category: string, topic: string): Promise<BehaviorAdviceResult> => {
+  if (!apiKey) throw new Error("Chave de API não configurada no servidor.");
+  
   const prompt = `
   CATEGORIA: "${category}"
   TÓPICO: "${topic}"
