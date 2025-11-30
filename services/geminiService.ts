@@ -160,6 +160,7 @@ export const getSmartBehaviorAdvice = async (category: BehaviorCategory, topic: 
   2. NADA de jogos tóxicos ou manipulação barata. O foco é postura de Alto Valor.
   3. Se for interpretação, seja realista (nem otimista demais, nem pessimista demais).
   4. Empodere a mulher para que ela não dependa da validação externa.
+  5. Se o tópico for sobre "testes" ou "jogos", explique qual é o teste oculto e como passar nele com elegância.
 
   Retorne JSON estrito:
   {

@@ -13,42 +13,43 @@ export const Layout: React.FC<LayoutProps> = ({ children, title, showBack }) => 
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-neutral-950 flex flex-col max-w-md mx-auto shadow-2xl shadow-black overflow-hidden relative border-x border-neutral-900">
-      {/* Header */}
-      <header className="bg-neutral-950/90 backdrop-blur-md sticky top-0 z-50 border-b border-blood-900/30 px-4 py-4 flex items-center justify-between h-16 shadow-lg shadow-black/50">
-        <div className="flex items-center gap-3">
+    <div className="min-h-screen bg-black flex flex-col max-w-md mx-auto shadow-2xl shadow-neutral-900 overflow-hidden relative border-x border-neutral-900">
+      {/* Header - iOS Style */}
+      <header className="bg-black/80 backdrop-blur-xl sticky top-0 z-50 border-b border-white/10 px-4 py-2 flex items-center justify-between h-14">
+        <div className="flex items-center gap-3 w-full">
           {showBack && (
-            <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-neutral-400 hover:text-blood-500 transition-colors">
-              <ChevronLeftIcon className="w-6 h-6" />
+            <button onClick={() => navigate(-1)} className="p-2 -ml-3 text-blue-500 hover:text-blue-400 transition-colors flex items-center">
+              <ChevronLeftIcon className="w-7 h-7" />
+              <span className="text-base font-normal">Voltar</span>
             </button>
           )}
-          {title ? (
-            <h1 className="font-serif font-bold text-lg text-neutral-200 tracking-wide">{title}</h1>
-          ) : (
-            <div className="flex items-center gap-2">
-               <span className="text-2xl drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]">🔥</span>
-               <div className="flex flex-col">
-                  <span className="font-serif font-medium text-xs text-neutral-400 leading-none tracking-widest uppercase mb-0.5">Deusa do</span>
-                  <span className="font-serif font-black text-xl text-blood-600 leading-none tracking-[0.1em] drop-shadow-sm">JOGO</span>
-               </div>
-            </div>
-          )}
+          
+          <div className={`flex-1 flex items-center ${showBack ? 'justify-center pr-10' : 'justify-between'}`}>
+            {title ? (
+              <h1 className="font-semibold text-[17px] text-white tracking-tight">{title}</h1>
+            ) : (
+              <div className="flex items-center gap-2">
+                 <span className="text-2xl">🔥</span>
+                 <span className="font-bold text-lg text-white tracking-tight">Deusa do Jogo</span>
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto pb-24 scroll-smooth bg-neutral-950 text-neutral-200">
+      <main className="flex-1 overflow-y-auto pb-28 scroll-smooth bg-black text-white">
         {children}
       </main>
 
-      {/* Bottom Navigation */}
-      <nav className="bg-neutral-900 border-t border-neutral-800 fixed bottom-0 max-w-md w-full z-40 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.8)]">
-        <div className="flex justify-between items-center h-20 pb-2 px-2">
-          <NavItem to="/" icon={<HomeIcon />} label="Altar" active={location.pathname === '/'} />
+      {/* Bottom Navigation - iOS Tab Bar Style */}
+      <nav className="bg-neutral-900/90 backdrop-blur-xl border-t border-white/10 fixed bottom-0 max-w-md w-full z-40 pb-safe">
+        <div className="flex justify-between items-end h-[84px] pb-6 px-4">
+          <NavItem to="/" icon={<HomeIcon />} label="Início" active={location.pathname === '/'} />
           <NavItem to="/generator" icon={<MessageIcon />} label="Rituais" active={location.pathname === '/generator'} />
           <NavItem to="/decoder" icon={<SearchIcon />} label="Oráculo" active={location.pathname === '/decoder'} />
-          <NavItem to="/thermometer" icon={<ZapIcon />} label="Energia" active={location.pathname === '/thermometer'} />
           <NavItem to="/behaviors" icon={<DiamondIcon />} label="Sabedoria" active={location.pathname === '/behaviors'} />
+          <NavItem to="/turntables" icon={<ZapIcon />} label="Estratégia" active={location.pathname === '/turntables'} />
         </div>
       </nav>
     </div>
@@ -60,12 +61,15 @@ const NavItem = ({ to, icon, label, active }: { to: string, icon: React.ReactNod
   return (
     <button
       onClick={() => navigate(to)}
-      className={`flex flex-col items-center justify-center w-full h-full space-y-1.5 transition-all duration-300 ${active ? 'text-blood-500' : 'text-neutral-600 hover:text-neutral-400'}`}
+      className={`flex flex-col items-center justify-center w-full space-y-1 transition-colors ${active ? 'text-blood-500' : 'text-neutral-500'}`}
     >
-      <div className={`p-1.5 rounded-full transition-all ${active ? 'bg-blood-900/20 shadow-[0_0_15px_rgba(220,38,38,0.2)]' : ''}`}>
-        {React.cloneElement(icon as React.ReactElement, { className: 'w-5 h-5' })}
+      <div className="transition-transform duration-200">
+        {React.cloneElement(icon as React.ReactElement, { 
+          className: 'w-7 h-7', 
+          strokeWidth: active ? 2.5 : 1.5 
+        })}
       </div>
-      <span className="text-[8px] font-bold tracking-widest uppercase">{label}</span>
+      <span className="text-[10px] font-medium tracking-tight">{label}</span>
     </button>
   );
 };
