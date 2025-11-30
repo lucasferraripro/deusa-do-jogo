@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { HomeIcon, MessageIcon, SearchIcon, ZapIcon, ChevronLeftIcon, DiamondIcon } from './Icons';
+import { HomeIcon, ChevronLeftIcon, CurtainIcon, WandIcon, CrownIcon, ChessQueenIcon } from './Icons';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -46,10 +46,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, title, showBack }) => 
       <nav className="bg-neutral-900/90 backdrop-blur-xl border-t border-white/10 fixed bottom-0 max-w-md w-full z-40 pb-safe">
         <div className="flex justify-between items-end h-[84px] pb-6 px-4">
           <NavItem to="/" icon={<HomeIcon />} label="Início" active={location.pathname === '/'} />
-          <NavItem to="/generator" icon={<MessageIcon />} label="Rituais" active={location.pathname === '/generator'} />
-          <NavItem to="/decoder" icon={<SearchIcon />} label="Oráculo" active={location.pathname === '/decoder'} />
-          <NavItem to="/behaviors" icon={<DiamondIcon />} label="Sabedoria" active={location.pathname === '/behaviors'} />
-          <NavItem to="/turntables" icon={<ZapIcon />} label="Estratégia" active={location.pathname === '/turntables'} />
+          <NavItem to="/decoder" icon={<CurtainIcon />} label="Desvendar" active={location.pathname === '/decoder'} />
+          <NavItem to="/generator" icon={<WandIcon />} label="Enfeitiçar" active={location.pathname === '/generator'} />
+          <NavItem to="/behaviors" icon={<CrownIcon />} label="Modo Deusa" active={location.pathname === '/behaviors'} />
+          <NavItem to="/turntables" icon={<ChessQueenIcon />} label="Checkmate" active={location.pathname === '/turntables'} />
         </div>
       </nav>
     </div>

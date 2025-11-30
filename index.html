@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Deusa do Jogo 🔥 - Domine a Sedução</title>
+    <!-- Tailwind via CDN for simplicity in this setup, ensuring dark mode works -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -11,7 +12,6 @@
         theme: {
           extend: {
             fontFamily: {
-              // Apple System Font Stack for that iPhone Native feel
               sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
             },
             colors: {
@@ -24,9 +24,9 @@
                 950: '#450a0a',
               },
               night: {
-                800: '#1c1c1e', // Apple Dark Gray
+                800: '#1c1c1e',
                 900: '#18181b', 
-                950: '#000000', // True Black for OLED
+                950: '#000000',
               }
             },
             animation: {
@@ -63,7 +63,7 @@
         background-color: #1c1c1e; 
         color: #ffffff;
         border: 1px solid #3a3a3c;
-        font-size: 16px; /* Prevents zoom on iOS */
+        font-size: 16px;
       }
       .input-dark:focus {
         border-color: #ef4444;
@@ -73,7 +73,6 @@
       .input-dark::placeholder {
         color: #8e8e93;
       }
-      /* Hide scrollbar for cleaner look but allow scroll */
       ::-webkit-scrollbar {
         width: 0px; 
         background: transparent; 
@@ -86,37 +85,31 @@
         to { opacity: 1; transform: translateY(0); }
       }
       
-      /* 3D Gem Effect for Icons */
-      .gem-3d {
+      /* Matte Gem Effect (No Sheen) */
+      .gem-matte {
         position: relative;
         box-shadow: 
-          inset 0 4px 6px rgba(255, 255, 255, 0.3),
-          inset 0 -4px 6px rgba(0, 0, 0, 0.4),
-          0 10px 15px -3px rgba(0, 0, 0, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-      }
-      .gem-3d::after {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 50%;
-        background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
-        border-radius: inherit;
-        pointer-events: none;
+          inset 0 2px 4px rgba(255, 255, 255, 0.05),
+          0 8px 20px -6px rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
     </style>
   <script type="importmap">
 {
   "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6"
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

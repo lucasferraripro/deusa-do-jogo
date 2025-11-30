@@ -24,7 +24,7 @@ export const Decoder: React.FC = () => {
   };
 
   return (
-    <Layout title="Oráculo da Verdade">
+    <Layout title="Desvendar">
       <div className="px-5 py-6 pb-24 space-y-6">
         
         {!result ? (

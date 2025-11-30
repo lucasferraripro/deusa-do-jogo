@@ -43,3 +43,36 @@ export const BrainIcon = ({ className }: { className?: string }) => (
 export const UsersIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
 );
+
+// New Icons
+export const CurtainIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M21 3H3v18h18V3zM5 19V5h6v14H5zm14 0h-6V5h6v14z" />
+    <path d="M11 5h2v14h-2z" opacity="0.5" />
+  </svg>
+);
+
+export const WandIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="m19 2 2 2-2 2-2-2 2-2Z"/>
+    <path d="m15 2-2 2 2 2 2-2-2-2Z"/>
+    <path d="m15 14 2 2-2 2-2-2 2-2Z"/>
+    <path d="M3 21l9-9"/>
+    <path d="m9 10 3 3"/>
+  </svg>
+);
+
+export const CrownIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5z"/>
+  </svg>
+);
+
+export const ChessQueenIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+    <path d="M6 20h12v2H6v-2z"/>
+    <path d="M16 16l2-6-4 2-2-4-2 4-4-2 2 6"/>
+    <path d="M9 20v-4h6v4"/>
+  </svg>
+);

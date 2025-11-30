@@ -23,7 +23,7 @@ export const TurnTables: React.FC = () => {
   };
 
   return (
-    <Layout title="Dominação Estratégica" showBack>
+    <Layout title="Checkmate" showBack>
       <div className="px-5 py-6 pb-24 space-y-6">
         
         {!result ? (

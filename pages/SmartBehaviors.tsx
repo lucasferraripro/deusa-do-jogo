@@ -54,7 +54,7 @@ export const SmartBehaviors: React.FC = () => {
   };
 
   return (
-    <Layout title="Sabedoria da Deusa">
+    <Layout title="Modo Deusa">
       <div className="flex flex-col h-full bg-black">
         
         {/* TABS HEADER - Larger Text */}
