@@ -49,20 +49,20 @@
         color: #f5f5f5;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        /* iOS Base Font Size */
+        /* iOS Standard Base Size */
         font-size: 17px; 
         line-height: 1.5;
       }
       
       h1, h2, h3, h4, h5, h6 {
-        letter-spacing: -0.02em; /* Tight tracking like iOS titles */
+        letter-spacing: -0.02em;
       }
 
       .input-dark {
         background-color: #1c1c1e; /* Apple System Gray 6 Dark */
         color: #ffffff;
         border: 1px solid #333333;
-        font-size: 17px; /* Prevent zoom on iOS */
+        font-size: 17px; /* Prevent iOS zoom */
         line-height: 1.4;
       }
       .input-dark:focus {
@@ -107,7 +107,7 @@
         padding-bottom: env(safe-area-inset-bottom);
       }
     </style>
-<script type="importmap">
+  <script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",
