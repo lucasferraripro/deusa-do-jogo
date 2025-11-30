@@ -1,12 +1,11 @@
 import { GoogleGenAI } from "@google/genai";
 import { SYSTEM_INSTRUCTION } from "../constants";
-import { GeneratorResult, DecoderResult, TurnTablesResult, BehaviorAdviceResult, BehaviorCategory } from "../types";
+import { GeneratorResult, DecoderResult, TurnTablesResult, BehaviorAdviceResult } from "../types";
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const MODEL_NAME = 'gemini-2.5-flash';
 
-// Helper to clean JSON string if the model adds markdown
 const cleanJson = (text: string) => {
   return text.replace(/```json/g, '').replace(/```/g, '').trim();
 };
@@ -81,7 +80,6 @@ export const decodeMessage = async (message: string): Promise<DecoderResult> => 
 };
 
 export const analyzeThermometer = async (behaviorDescription: string): Promise<DecoderResult> => {
-  // We reuse DecoderResult structure as it fits well
   const prompt = `
   COMPORTAMENTO DO HOMEM: "${behaviorDescription}"
 
@@ -141,34 +139,22 @@ export const turnTheTables = async (story: string): Promise<TurnTablesResult> =>
   }
 };
 
-export const getSmartBehaviorAdvice = async (category: BehaviorCategory, topic: string, context?: string): Promise<BehaviorAdviceResult> => {
-  const categoryPrompts = {
-    conquest: "Fase: CONQUISTA (Dating). Foco: Criar atração genuína, mistério e alto valor.",
-    conversation: "Fase: CONVERSA DIGITAL (WhatsApp/Instagram). Foco: Timing, polaridade, não ser ansiosa.",
-    relationship: "Fase: RELACIONAMENTO SÉRIO. Foco: Parceria, respeito, manter a chama e individualidade.",
-    interpreter: "Fase: INTERPRETAÇÃO DE COMPORTAMENTO. Foco: Clareza mental, sem paranoia."
-  };
-
+export const getSmartBehaviorAdvice = async (category: string, topic: string): Promise<BehaviorAdviceResult> => {
   const prompt = `
-  Você está no modo "SABEDORIA SUPREMA DA DEUSA".
-  CATEGORIA: ${categoryPrompts[category]}
-  TÓPICO/DÚVIDA DA USUÁRIA: "${topic}"
-  ${context ? `CONTEXTO ESPECÍFICO: "${context}"` : ''}
+  CATEGORIA: "${category}"
+  TÓPICO: "${topic}"
 
-  REGRAS DE OURO PARA ESTA RESPOSTA:
-  1. Baseie-se em Inteligência Emocional, Autoestima Blindada e Comunicação Não Violenta.
-  2. NADA de jogos tóxicos ou manipulação barata. O foco é postura de Alto Valor.
-  3. Se for interpretação, seja realista (nem otimista demais, nem pessimista demais).
-  4. Empodere a mulher para que ela não dependa da validação externa.
-  5. Se o tópico for sobre "testes" ou "jogos", explique qual é o teste oculto e como passar nele com elegância.
+  TAREFA: Fornecer conselho de comportamento de "Alta Deusa".
+  FOCO: Inteligência emocional, autoestima inabalável, não-toxicidade, elegância.
+  Se o tópico for "testes e jogos", explique o conceito de "Shit Test" e como passar com classe.
 
-  Retorne JSON estrito:
+  Retorne um JSON estrito:
   {
-    "corePrinciple": "O princípio psicológico ou emocional por trás disso (máx 2 frases).",
-    "posture": "A mentalidade/postura exata que ela deve assumir.",
-    "dos": ["Ação recomendada 1", "Ação recomendada 2", "Ação recomendada 3"],
-    "donts": ["O que NÃO fazer (erro comum)", "O que evitar para não perder valor"],
-    "examplePhrase": "Uma frase ou script inteligente para usar nessa situação (se aplicável, senão deixe vazio)."
+    "topic": "${topic}",
+    "mindset": "A mentalidade correta para esta situação (ex: Abundância, Desapego).",
+    "do": ["Ação recomendada 1", "Ação recomendada 2", "Ação recomendada 3"],
+    "dont": ["O que jamais fazer 1", "O que jamais fazer 2"],
+    "examplePhrase": "Uma frase mantra ou resposta exemplo se aplicável."
   }
   `;
 
@@ -183,6 +169,6 @@ export const getSmartBehaviorAdvice = async (category: BehaviorCategory, topic: 
     });
     return JSON.parse(cleanJson(response.text || "{}")) as BehaviorAdviceResult;
   } catch (error) {
-    throw new Error("Erro ao buscar sabedoria.");
+     throw new Error("Erro ao obter conselho.");
   }
 };

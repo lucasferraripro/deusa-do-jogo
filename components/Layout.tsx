@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { HomeIcon, ChevronLeftIcon, CurtainIcon, WandIcon, CrownIcon, ChessQueenIcon } from './Icons';
+import { HomeIcon, CurtainIcon, WandIcon, CrownIcon, ChessQueenIcon, ChevronLeftIcon } from './Icons';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -13,38 +13,34 @@ export const Layout: React.FC<LayoutProps> = ({ children, title, showBack }) => 
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-black flex flex-col max-w-md mx-auto shadow-2xl shadow-neutral-900 overflow-hidden relative border-x border-neutral-900">
-      {/* Header - iOS Style */}
-      <header className="bg-black/80 backdrop-blur-xl sticky top-0 z-50 border-b border-white/10 px-4 py-2 flex items-center justify-between h-14">
-        <div className="flex items-center gap-3 w-full">
+    <div className="min-h-screen bg-black flex flex-col max-w-md mx-auto shadow-2xl shadow-black overflow-hidden relative border-x border-neutral-900 font-sans">
+      {/* Header */}
+      <header className="bg-black/95 backdrop-blur-xl sticky top-0 z-50 border-b border-neutral-900 px-5 py-4 flex items-center justify-between h-16">
+        <div className="flex items-center gap-3">
           {showBack && (
-            <button onClick={() => navigate(-1)} className="p-2 -ml-3 text-blue-500 hover:text-blue-400 transition-colors flex items-center">
-              <ChevronLeftIcon className="w-7 h-7" />
-              <span className="text-base font-normal">Voltar</span>
+            <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-neutral-400 hover:text-white transition-colors">
+              <ChevronLeftIcon className="w-6 h-6" />
             </button>
           )}
-          
-          <div className={`flex-1 flex items-center ${showBack ? 'justify-center pr-10' : 'justify-between'}`}>
-            {title ? (
-              <h1 className="font-semibold text-[17px] text-white tracking-tight">{title}</h1>
-            ) : (
-              <div className="flex items-center gap-2">
-                 <span className="text-2xl">🔥</span>
-                 <span className="font-bold text-lg text-white tracking-tight">Deusa do Jogo</span>
-              </div>
-            )}
-          </div>
+          {title ? (
+            <h1 className="font-bold text-xl text-white tracking-tight">{title}</h1>
+          ) : (
+            <div className="flex items-center gap-2">
+               <span className="text-xl">🔥</span>
+               <span className="font-bold text-lg text-white tracking-tight">Deusa do Jogo</span>
+            </div>
+          )}
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto pb-28 scroll-smooth bg-black text-white">
+      <main className="flex-1 overflow-y-auto pb-24 scroll-smooth bg-black text-neutral-100">
         {children}
       </main>
 
-      {/* Bottom Navigation - iOS Tab Bar Style */}
-      <nav className="bg-neutral-900/90 backdrop-blur-xl border-t border-white/10 fixed bottom-0 max-w-md w-full z-40 pb-safe">
-        <div className="flex justify-between items-end h-[84px] pb-6 px-4">
+      {/* Bottom Navigation */}
+      <nav className="bg-neutral-950/95 backdrop-blur-lg border-t border-neutral-900 fixed bottom-0 max-w-md w-full z-40 pb-safe">
+        <div className="flex justify-around items-center h-[88px] pb-4 px-2">
           <NavItem to="/" icon={<HomeIcon />} label="Início" active={location.pathname === '/'} />
           <NavItem to="/decoder" icon={<CurtainIcon />} label="Desvendar" active={location.pathname === '/decoder'} />
           <NavItem to="/generator" icon={<WandIcon />} label="Enfeitiçar" active={location.pathname === '/generator'} />
@@ -61,15 +57,12 @@ const NavItem = ({ to, icon, label, active }: { to: string, icon: React.ReactNod
   return (
     <button
       onClick={() => navigate(to)}
-      className={`flex flex-col items-center justify-center w-full space-y-1 transition-colors ${active ? 'text-blood-500' : 'text-neutral-500'}`}
+      className={`flex flex-col items-center justify-center w-full h-full space-y-1.5 transition-all active:scale-90 ${active ? 'text-blood-500' : 'text-neutral-500'}`}
     >
-      <div className="transition-transform duration-200">
-        {React.cloneElement(icon as React.ReactElement, { 
-          className: 'w-7 h-7', 
-          strokeWidth: active ? 2.5 : 1.5 
-        })}
+      <div className={`p-1 rounded-full`}>
+        {React.cloneElement(icon as React.ReactElement<{ className?: string }>, { className: 'w-6 h-6' })}
       </div>
-      <span className="text-[10px] font-medium tracking-tight">{label}</span>
+      <span className={`text-[10px] font-medium tracking-wide ${active ? 'text-white' : 'text-neutral-600'}`}>{label}</span>
     </button>
   );
 };

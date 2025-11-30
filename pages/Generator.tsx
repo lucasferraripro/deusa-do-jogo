@@ -41,7 +41,7 @@ export const Generator: React.FC = () => {
   };
 
   return (
-    <Layout title="Enfeitiçar" showBack={step > 1}>
+    <Layout title="Feitiços de Mensagem" showBack={step > 1}>
       <div className="px-5 py-6 pb-24">
         
         {/* STEP 1: SITUATION */}
@@ -56,6 +56,7 @@ export const Generator: React.FC = () => {
                   className="flex items-center p-4 bg-neutral-900 rounded-xl border border-neutral-800 hover:border-blood-700/50 hover:bg-neutral-800 transition-all text-left group"
                 >
                   <div className="p-2 bg-neutral-950 rounded-full mr-4 text-neutral-400 group-hover:text-blood-500 transition-colors">
+                    {/* Emoji opacity fixed by using standard spans */}
                     <span className="text-xl opacity-100 block">
                       {sit.category === 'sumiu' ? '👻' : sit.category === 'encontro' ? '📅' : sit.category === 'conversa' ? '💬' : '🚩'}
                     </span>

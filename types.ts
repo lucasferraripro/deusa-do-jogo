@@ -40,11 +40,9 @@ export interface TurnTablesResult {
 }
 
 export interface BehaviorAdviceResult {
-  corePrinciple: string;
-  posture: string;
-  dos: string[];
-  donts: string[];
+  topic: string;
+  mindset: string;
+  do: string[];
+  dont: string[];
   examplePhrase?: string;
 }
-
-export type BehaviorCategory = 'conquest' | 'conversation' | 'relationship' | 'interpreter';

@@ -7,9 +7,6 @@ import { Thermometer } from './pages/Thermometer';
 import { TurnTables } from './pages/TurnTables';
 import { SmartBehaviors } from './pages/SmartBehaviors';
 
-// Global check for API Key usually happens in a real app, 
-// but here we assume it's set in process.env.API_KEY as per instructions.
-
 const App: React.FC = () => {
   return (
     <HashRouter>

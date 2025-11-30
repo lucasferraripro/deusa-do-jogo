@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Deusa do Jogo 🔥 - Domine a Sedução</title>
-    <!-- Tailwind via CDN for simplicity in this setup, ensuring dark mode works -->
+    <title>Ative Sua Deusa Interior</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -12,7 +11,8 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+              sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+              serif: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Georgia', 'serif'],
             },
             colors: {
               blood: {
@@ -24,20 +24,19 @@
                 950: '#450a0a',
               },
               night: {
-                800: '#1c1c1e',
+                800: '#1f1f22',
                 900: '#18181b', 
-                950: '#000000',
+                950: '#09090b', 
               }
             },
             animation: {
-              'spin-slow': 'spin 3s linear infinite',
+              'spin-slow': 'spin 4s linear infinite',
               'float': 'float 6s ease-in-out infinite',
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
               float: {
                 '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-6px)' },
+                '50%': { transform: 'translateY(-10px)' },
               }
             }
           }
@@ -47,51 +46,45 @@
     <style>
       body {
         background-color: #000000;
-        color: #ffffff;
+        color: #f5f5f5;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-feature-settings: "cv11", "ss01";
       }
-      /* iOS Style Glass */
-      .glass-card {
-        background: rgba(28, 28, 30, 0.6);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
+      
       .input-dark {
-        background-color: #1c1c1e; 
+        background-color: #121212; 
         color: #ffffff;
-        border: 1px solid #3a3a3c;
-        font-size: 16px;
+        border: 1px solid #333333;
+        font-size: 16px; 
       }
       .input-dark:focus {
         border-color: #ef4444;
         outline: none;
-        background-color: #2c2c2e;
+        background-color: #1a1a1a;
       }
       .input-dark::placeholder {
-        color: #8e8e93;
+        color: #666666;
       }
-      ::-webkit-scrollbar {
-        width: 0px; 
-        background: transparent; 
+
+      /* Matte Gem Style (Clean 3D) */
+      .gem-matte {
+        background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+        box-shadow: 
+          5px 5px 10px #050505, 
+          -5px -5px 10px #262626;
+        border: 1px solid #262626;
       }
+      .gem-matte:active {
+        box-shadow: inset 5px 5px 10px #050505, inset -5px -5px 10px #262626;
+      }
+
       .fade-in {
-        animation: fadeIn 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
       @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
-      }
-      
-      /* Matte Gem Effect (No Sheen) */
-      .gem-matte {
-        position: relative;
-        box-shadow: 
-          inset 0 2px 4px rgba(255, 255, 255, 0.05),
-          0 8px 20px -6px rgba(0, 0, 0, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.08);
       }
     </style>
   <script type="importmap">
